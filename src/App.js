@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ResultList from './result-list';
 import SearchForm from './search-form';
+import $ from 'jquery'; 
 
 class App extends Component {    
   constructor() {
@@ -14,19 +15,19 @@ class App extends Component {
   }
 
   handleSearch(searchTerm) {
-    // $.ajax({
-    //     type: 'GET',
-    //     url: 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=' + searchTerm,
-    //     jsonpCallback: 'jsonCallback',
-    //     contentType: "application/json",
-    //     dataType: 'jsonp',
-    //     success: (data) => {
-    //         this.setState({ results: data });
-    //     },
-    //     error: function () {
-    //         $(".out-result").html("Error");
-    //     }
-    // });
+    $.ajax({
+        type: 'GET',
+        url: 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=' + searchTerm,
+        jsonpCallback: 'jsonCallback',
+        contentType: "application/json",
+        dataType: 'jsonp',
+        success: (data) => {
+            this.setState({ results: data });
+        },
+        error: function () {
+            $(".out-result").html("Error");
+        }
+    });
   }
 
   render(){
