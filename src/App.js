@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ResultList from './result-list';
+import SearchForm from './search-form';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+class App extends Component {    
+  constructor() {
+    super();
+    this.state = {
+        results: [
+            '', [], [], []
+        ]
+    };
+  }
+
+  handleSearch(searchTerm) {
+    // $.ajax({
+    //     type: 'GET',
+    //     url: 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=' + searchTerm,
+    //     jsonpCallback: 'jsonCallback',
+    //     contentType: "application/json",
+    //     dataType: 'jsonp',
+    //     success: (data) => {
+    //         this.setState({ results: data });
+    //     },
+    //     error: function () {
+    //         $(".out-result").html("Error");
+    //     }
+    // });
+  }
+
+  render(){
+    return(
+        <div>
+            <SearchForm onSearch={this.handleSearch.bind(this)}/>
+            <ResultList results={this.state.results}/>
+        </div>
     );
   }
 }
