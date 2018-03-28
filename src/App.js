@@ -3,7 +3,8 @@ import './App.css';
 import ResultList from './result-list';
 import SearchForm from './search-form';
 import $ from 'jquery'; 
-
+// import axios from 'axios';
+ 
 class App extends Component {    
   constructor() {
     super();
@@ -28,6 +29,12 @@ class App extends Component {
             $(".out-result").html("Error");
         }
     });
+    // axios.get(`https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=` + searchTerm )
+    //   .then(response=>{
+    //     const results = response.data;  
+    //     this.setState({ results });
+    //   })
+    //   .catch(err => console.log(err));
   }
 
   render(){
