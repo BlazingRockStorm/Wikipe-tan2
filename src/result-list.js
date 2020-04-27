@@ -3,13 +3,15 @@ import SingleResult from './single-result';
 
 class ResultList extends React.Component {
     render() {
-        var results = this.props.results[1].map((result, index) => {
+        var results = Object.keys(this.props.results).map((key) => this.props.results[key]).sort((a, b) => a.index - b.index)
+        
+        var show_results = results.map((result, index) => {
             return (
-                <SingleResult key={index} title={this.props.results[1][index]} url={this.props.results[3][index]}/>
+                <SingleResult key={index} pageid={result.pageid} title={result.title} extract={result.extract}/>
             );
         });
-  
-        return (<ul className="out-result">{results}</ul>);
+
+    return (<ul className="out-result">{show_results}</ul>);
     }
 }
 
